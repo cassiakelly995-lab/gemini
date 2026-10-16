@@ -82,17 +82,24 @@ details p{margin:.6em 0 0;color:var(--mut)}
 footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);font-size:.9rem}
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .2s}
 #toast.on{opacity:1}
+.star{background:none;border:0;font-size:1.5rem;color:var(--brand);padding:0 4px;line-height:1}
+.fill{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:10px 0 12px}
+.fill label{font-size:.85rem;margin:0 0 2px;font-weight:500;color:var(--mut)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:6px 14px}
+.chip:hover{border-color:var(--brand)}
+.bad{color:var(--warn)}.good{color:var(--ok)}
 </style>
 </head>
 <body>
 <nav aria-label="Seções"><div class="wrap">
-<a href="#inicio">Primeiros passos</a><a href="#pro">O que o Pro libera</a><a href="#prompt">Montar prompt</a><a href="#prontos">Prompts prontos</a><a href="#receitas">Combos</a><a href="#apps">Apps Google</a><a href="#imagens">Imagens</a><a href="#comparar">Comparação</a><a href="#faq">Dúvidas</a>
+<a href="#inicio">Primeiros passos</a><a href="#pro">O que o Pro libera</a><a href="#prompt">Montar prompt</a><a href="#prontos">Prompts prontos</a><a href="#refinar">Refinar</a><a href="#receitas">Combos</a><a href="#apps">Apps Google</a><a href="#imagens">Imagens</a><a href="#comparar">Comparação</a><a href="#faq">Dúvidas</a>
 <button class="btn ghost" id="theme" type="button" aria-label="Alternar tema claro e escuro">Tema</button>
 </div></nav>
 
 <header class="hero"><div class="wrap">
 <h1>Gemini Pro na prática</h1>
-<p class="lead">Tudo o que o plano Google AI Pro libera, como ativar cada recurso e mais de 40 prompts prontos para copiar, colar e adaptar.</p>
+<p class="lead">Tudo o que o plano Google AI Pro libera, como ativar cada recurso e mais de 45 prompts prontos para copiar, colar e adaptar.</p>
 <div class="cta"><a class="btn" href="#prontos">Ver prompts prontos</a><a class="btn ghost" href="#inicio">Configurar em 10 minutos</a></div>
 <div class="facts"><span>Modelo avançado: Gemini 3.1 Pro</span><span>Limites 4x maiores que o grátis</span><span>5 TB de armazenamento</span><span>R$ 96,99/mês</span></div>
 </div></header>
@@ -142,6 +149,43 @@ footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);fon
 <div id="list"></div>
 <div class="note">Antes de colar documentos com dados pessoais, de clientes ou sigilosos, confira as regras da sua conta e da sua organização. Revise sempre a resposta antes de usar: a IA pode errar fatos, números e citações.</div>
 </div></section>
+
+<section id="refinar"><div class="wrap">
+<h2>Pedido fraco, pedido forte</h2>
+<p class="intro">O pedido melhor diz quem a IA é, o que fazer, para quem e em qual formato. Copie os exemplos e adapte.</p>
+<div class="scroll"><table>
+<thead><tr><th>Fraco</th><th>Melhor</th><th></th></tr></thead>
+<tbody>
+<tr><td class="bad">Resuma este contrato.</td><td>Você é um advogado empresarial. Resuma o contrato anexo para um leitor leigo, destacando prazos, multas e obrigações de cada parte. Formato: 5 tópicos e uma tabela de prazos.</td><td><button class="chip" type="button" data-t="Você é um advogado empresarial. Resuma o contrato anexo para um leitor leigo, destacando prazos, multas e obrigações de cada parte. Formato: 5 tópicos e uma tabela de prazos.">Copiar</button></td></tr>
+<tr><td class="bad">Faça um post sobre café.</td><td>Crie um post de Instagram sobre café especial para quem trabalha em casa. Tom leve, até 80 palavras e 3 hashtags.</td><td><button class="chip" type="button" data-t="Crie um post de Instagram sobre café especial para quem trabalha em casa. Tom leve, até 80 palavras e 3 hashtags.">Copiar</button></td></tr>
+<tr><td class="bad">Me ajude a estudar.</td><td>Você é um professor paciente. Monte um plano de estudos de 2 semanas para [assunto], com 1 hora por dia, e termine cada dia com 3 perguntas de revisão.</td><td><button class="chip" type="button" data-t="Você é um professor paciente. Monte um plano de estudos de 2 semanas para [assunto], com 1 hora por dia, e termine cada dia com 3 perguntas de revisão.">Copiar</button></td></tr>
+</tbody></table></div>
+<h3 style="margin-top:28px">Frases para refinar a resposta</h3>
+<p class="intro">Depois da primeira resposta, não recomece: peça um ajuste. Toque para copiar.</p>
+<div class="chips">
+<button class="chip" type="button" data-t="Deixe mais curto e direto.">Mais curto</button>
+<button class="chip" type="button" data-t="Reescreva em tom mais formal.">Mais formal</button>
+<button class="chip" type="button" data-t="Explique como se eu fosse iniciante, com um exemplo.">Para iniciante</button>
+<button class="chip" type="button" data-t="Apresente isso em uma tabela.">Em tabela</button>
+<button class="chip" type="button" data-t="Dê 3 alternativas diferentes e diga qual você escolheria.">3 alternativas</button>
+<button class="chip" type="button" data-t="Cite as fontes de cada afirmação e diga o que não for possível confirmar.">Citar fontes</button>
+<button class="chip" type="button" data-t="Releia sua resposta e aponte possíveis erros, lacunas e pontos de que você não tem certeza.">Checar a resposta</button>
+<button class="chip" type="button" data-t="Faça até 5 perguntas que você precisa que eu responda para melhorar este resultado.">Pedir perguntas</button>
+</div>
+</div></section>
+
+<section id="glossario"><div class="wrap">
+<h2>Glossário rápido</h2>
+<div class="grid">
+<div class="card"><h3>Prompt</h3><p>O pedido que você escreve para o Gemini.</p></div>
+<div class="card"><h3>Janela de contexto</h3><p>Quanto texto o Gemini consegue considerar de uma vez. No Pro, 1 milhão de tokens, segundo a Central de Prompts IA.</p></div>
+<div class="card"><h3>Deep Research</h3><p>Pesquisa na web que gera um relatório organizado.</p></div>
+<div class="card"><h3>Deep Think</h3><p>Modo de raciocínio em etapas para problemas complexos.</p></div>
+<div class="card"><h3>Canvas</h3><p>Área para editar o resultado e transformá-lo em páginas, protótipos ou resumos.</p></div>
+<div class="card"><h3>Gem</h3><p>Assistente personalizado com instruções fixas.</p></div>
+<div class="card"><h3>Nano Banana</h3><p>Motor de criação e edição de imagens do Gemini.</p></div>
+<div class="card"><h3>@ (arroba)</h3><p>Atalho no prompt para usar um app conectado, como Gmail ou Drive.</p></div>
+</div></div></section>
 
 <section id="receitas"><div class="wrap">
 <h2>Combos que só o Pro faz bem</h2>
@@ -206,7 +250,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);fon
 <details><summary>O Gemini substitui o Google Assistente?</summary><p>Sim, a partir de setembro de 2026.</p></details>
 </div></section>
 
-<footer><div class="wrap">Guia independente, sem vínculo com o Google. Baseado em artigos do Canaltech (set/2026) e da Central de Prompts IA (fev/2026). Preços, modelos e limites mudam com frequência; confirme no site oficial.</div></footer>
+<footer><div class="wrap">Guia independente, sem vínculo com o Google. Revisado em 16/10/2026. Baseado em artigos do Canaltech (set/2026) e da Central de Prompts IA (fev/2026). Preços, modelos e limites mudam com frequência; confirme no site oficial.</div></footer>
 <div id="toast" role="status"></div>
 
 <script>
@@ -247,6 +291,15 @@ var P=[
 ["Imagem","Foto realista","Gere uma imagem fotorrealista de [objeto ou cena], com luz natural entrando pela janela."],
 ["Imagem","Trocar fundo","Troque o fundo desta foto por um cenário de estúdio, mantendo a iluminação sobre a pessoa."],
 ["Imagem","Variações de um produto","Use esta foto do meu produto como referência e crie 5 variações com fundos diferentes, mantendo o produto original."],
+["Jurídico","Explicar em linguagem simples","Explique o termo ou a decisão abaixo em linguagem simples para uma pessoa sem formação jurídica, com um exemplo prático e sem perder a precisão:\n[cole o trecho]"],
+["Jurídico","Resumo de processo","Resuma o documento anexo em: partes, pedido, fatos relevantes, prazos e situação atual. Marque o que não aparece no documento."],
+["Jurídico","Revisar minuta","Revise esta minuta quanto a clareza, coerência e linguagem formal. Aponte trechos ambíguos e sugira redações melhores, sem alterar o mérito:\n[cole a minuta]"],
+["Jurídico","Ata de reunião de comissão","Transforme estas anotações em ata formal, com data, participantes, pauta, deliberações e encaminhamentos:\n[cole as anotações]"],
+["Jurídico","Ofício","Redija um ofício formal para [destinatário] sobre [assunto], com vocativo, corpo objetivo e fecho institucional."],
+["Jurídico","Checklist de prazos","Monte um checklist de prazos e providências para [tipo de demanda], em ordem cronológica, com campo para responsável e data."],
+["Redes sociais","Legenda de Instagram","Escreva 3 opções de legenda para um post sobre [tema], tom [leve, institucional ou inspirador], com chamada para ação e até 5 hashtags."],
+["Redes sociais","Calendário semanal","Monte um calendário de conteúdo de 7 dias para [perfil ou projeto], com formato, tema e horário sugerido de cada post."],
+["Redes sociais","Roteiro de vídeo curto","Crie um roteiro de vídeo de 30 segundos sobre [tema], com gancho nos 3 primeiros segundos, desenvolvimento e chamada final."],
 ["Gems","Gem revisor de textos","Você é um revisor de textos. Corrija gramática e clareza em português do Brasil, sem mudar o sentido. Devolva o texto corrigido e uma lista curta do que mudou."],
 ["Gems","Gem revisor de propostas","Revise propostas comerciais em português, identifique erros de preço, inconsistências e cláusulas vagas. Tom profissional e direto."],
 ["Gems","Gem de triagem","Você é um assistente de triagem. Compare os candidatos com os critérios da vaga e liste os 3 melhores com justificativa objetiva.\nCritérios: [critérios]"]
@@ -254,8 +307,9 @@ var P=[
 var STEPS=["Entre em gemini.google.com com sua conta Google e confirme que o plano Google AI Pro está ativo.","Abra o seletor de modelos e teste o Gemini 3.1 Pro em uma pergunta complexa.","Engrenagem, Inteligência Personalizada, Apps Conectados: ative Gmail, Drive e Agenda.","Rode o prompt “Planejar a semana” da biblioteca abaixo.","Faça uma pesquisa com Deep Research usando o prompt de mercado.","Suba um PDF longo e peça um resumo executivo.","Crie seu primeiro Gem com o prompt que você mais repete."];
 function toast(t){var e=$("toast");e.textContent=t;e.className="on";setTimeout(function(){e.className=""},1600)}
 function copy(t){var f=function(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");toast("Copiado!")}catch(e){toast("Selecione e copie manualmente")}a.remove()};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast("Copiado!")},f)}else f()}
-function tabs(){var c=["Todos"];P.forEach(function(p){if(c.indexOf(p[0])<0)c.push(p[0])});var t=$("tabs");t.textContent="";c.forEach(function(n){var b=document.createElement("button");b.type="button";b.textContent=n;b.setAttribute("aria-pressed",n===cat);b.onclick=function(){cat=n;tabs();render()};t.appendChild(b)})}
-function render(){var q=$("q").value.toLowerCase(),l=$("list"),n=0;l.textContent="";P.forEach(function(p){if((cat==="Todos"||p[0]===cat)&&(p[1]+" "+p[2]).toLowerCase().indexOf(q)>-1){n++;var d=document.createElement("div");d.className="prompt";var h=document.createElement("h3");h.textContent=p[1];var pre=document.createElement("pre");pre.textContent=p[2];var r=document.createElement("div");r.className="row";var b=document.createElement("button");b.className="btn";b.type="button";b.textContent="Copiar";b.onclick=function(){copy(p[2])};var s=document.createElement("span");s.className="tag";s.textContent=p[0];r.appendChild(b);r.appendChild(s);d.appendChild(h);d.appendChild(pre);d.appendChild(r);l.appendChild(d)}});$("count").textContent=n+(n===1?" prompt":" prompts");if(!n){var e=document.createElement("p");e.className="empty";e.textContent="Nenhum prompt encontrado. Tente outra palavra ou escolha “Todos”.";l.appendChild(e)}}
+function tabs(){var c=["Todos","Favoritos"];P.forEach(function(p){if(c.indexOf(p[0])<0)c.push(p[0])});var t=$("tabs");t.textContent="";c.forEach(function(n){var b=document.createElement("button");b.type="button";b.textContent=n;b.setAttribute("aria-pressed",n===cat);b.onclick=function(){cat=n;tabs();render()};t.appendChild(b)})}
+var fav={};try{fav=JSON.parse(localStorage.getItem("gpf")||"{}")}catch(e){}
+function render(){var q=$("q").value.toLowerCase(),l=$("list"),n=0;l.textContent="";P.forEach(function(p){var ok=cat==="Todos"||(cat==="Favoritos"?fav[p[1]]:p[0]===cat);if(!ok||(p[1]+" "+p[2]).toLowerCase().indexOf(q)<0)return;n++;var d=document.createElement("div");d.className="prompt";var top=document.createElement("div");top.className="row";top.style.justifyContent="space-between";var h=document.createElement("h3");h.textContent=p[1];h.style.margin="0";var st=document.createElement("button");st.type="button";st.className="star";var paint=function(){st.textContent=fav[p[1]]?"★":"☆";st.setAttribute("aria-pressed",fav[p[1]]?"true":"false");st.setAttribute("aria-label",fav[p[1]]?"Remover dos favoritos":"Adicionar aos favoritos")};paint();st.onclick=function(){if(fav[p[1]])delete fav[p[1]];else fav[p[1]]=1;try{localStorage.setItem("gpf",JSON.stringify(fav))}catch(e){}if(cat==="Favoritos")render();else paint()};top.appendChild(h);top.appendChild(st);d.appendChild(top);var ph=p[2].match(/\[[^\]]+\]/g)||[];ph=ph.filter(function(x,i){return ph.indexOf(x)===i});var vals={},pre=document.createElement("pre");var txt=function(){var t=p[2];ph.forEach(function(k){if(vals[k])t=t.split(k).join(vals[k])});return t};pre.textContent=p[2];if(ph.length){var f=document.createElement("div");f.className="fill";ph.forEach(function(k,j){var id="f"+n+"_"+j,lb=document.createElement("label"),inp=document.createElement("input");lb.htmlFor=id;lb.textContent=k.slice(1,-1);inp.type="text";inp.id=id;inp.oninput=function(){vals[k]=inp.value.trim();pre.textContent=txt()};var w=document.createElement("div");w.appendChild(lb);w.appendChild(inp);f.appendChild(w)});d.appendChild(f)}d.appendChild(pre);var r=document.createElement("div");r.className="row";var b=document.createElement("button");b.className="btn";b.type="button";b.textContent="Copiar";b.onclick=function(){var t=txt();copy(t);if(/\[[^\]]+\]/.test(t))setTimeout(function(){toast("Copiado, mas ainda há campos [..] sem preencher")},1700)};var s=document.createElement("span");s.className="tag";s.textContent=p[0];r.appendChild(b);r.appendChild(s);d.appendChild(r);l.appendChild(d)});$("count").textContent=n+(n===1?" prompt":" prompts");if(!n){var e=document.createElement("p");e.className="empty";e.textContent=cat==="Favoritos"?"Toque na estrela de um prompt para guardá-lo aqui.":"Nenhum prompt encontrado. Tente outra palavra ou escolha “Todos”.";l.appendChild(e)}}
 function build(){var v=["b1","b2","b3","b4"].map(function(i){return $(i).value.trim()}).filter(Boolean).map(function(s){return /[.!?:]$/.test(s)?s:s+"."});$("built").textContent=v.length?v.join(" "):"Preencha os campos acima."}
 var saved={};try{saved=JSON.parse(localStorage.getItem("gp")||"{}")}catch(e){}
 function prog(){var n=document.querySelectorAll("#check input:checked").length;$("prog").textContent=n+" de "+STEPS.length+" etapas concluídas"+(n===STEPS.length?". Tudo pronto!":".")}
@@ -264,6 +318,7 @@ function check(){var u=$("check");STEPS.forEach(function(s,i){var li=document.cr
 $("copyBuilt").onclick=function(){var t=$("built").textContent;if(t!=="Preencha os campos acima.")copy(t);else toast("Preencha ao menos um campo")};
 $("q").addEventListener("input",render);
 $("theme").onclick=function(){var r=document.documentElement,d=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");r.setAttribute("data-theme",d==="dark"?"light":"dark")};
+document.addEventListener("click",function(e){var t=e.target.closest("[data-t]");if(t)copy(t.getAttribute("data-t"))});
 check();tabs();render();
 </script>
 </body>
