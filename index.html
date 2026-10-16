@@ -29,7 +29,8 @@ a{color:var(--brand)}
 :focus-visible{outline:3px solid var(--brand);outline-offset:2px}
 .wrap{max-width:980px;margin:0 auto;padding:0 20px}
 nav{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;gap:6px;align-items:center;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+nav .wrap{display:flex;gap:8px;align-items:center;padding-top:10px;padding-bottom:10px}
+.links{display:flex;gap:6px;overflow-x:auto;flex:1;min-width:0}
 nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:6px 12px;border-radius:99px;font-size:.92rem;font-weight:500}
 nav a:hover{background:var(--soft)}
 nav button{margin-left:auto;white-space:nowrap}
@@ -99,18 +100,27 @@ footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);fon
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
 textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
 #totop{position:fixed;right:16px;bottom:16px;padding:8px 14px;z-index:5}
+.k1{background:var(--k1)}.k2{background:var(--k2)}.k3{background:var(--k3)}.k4{background:var(--k4)}
+:root{--k1:#dbe4ff;--k2:#d3f3ec;--k3:#ffe8cc;--k4:#f3dcf7}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--k1:#2a3680;--k2:#14524a;--k3:#6b3f12;--k4:#5a2a66}}
+:root[data-theme=dark]{--k1:#2a3680;--k2:#14524a;--k3:#6b3f12;--k4:#5a2a66}
+.anat{margin-top:30px;max-width:720px}
+.anat p{font-size:1.15rem;line-height:2;margin:0 0 10px}
+.anat span,.anat li{padding:3px 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.anat ul{display:flex;gap:8px;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-size:.9rem;font-weight:600}
+#totop{opacity:0;pointer-events:none;transition:opacity .2s}
+#totop.on{opacity:1;pointer-events:auto}
 </style>
 </head>
 <body>
-<nav aria-label="Seções"><div class="wrap">
-<a href="#inicio">Primeiros passos</a><a href="#pro">O que o Pro libera</a><a href="#recursos">Todos os recursos</a><a href="#turbo">Turbinar</a><a href="#prompt">Montar prompt</a><a href="#prontos">Prompts prontos</a><a href="#refinar">Refinar</a><a href="#receitas">Combos</a><a href="#apps">Apps Google</a><a href="#imagens">Imagens</a><a href="#comparar">Comparação</a><a href="#faq">Dúvidas</a>
-<button class="btn ghost" id="theme" type="button" aria-label="Alternar tema claro e escuro">Tema</button>
-</div></nav>
+<noscript><p style="padding:20px;text-align:center">Esta página usa JavaScript para a biblioteca de prompts e a lista de recursos. Ative o JavaScript para ver todo o conteúdo.</p></noscript>
+<nav aria-label="Seções"><div class="wrap"><div class="links"><a href="#inicio">Começar</a><a href="#recursos">Recursos</a><a href="#prompt">Montar prompt</a><a href="#prontos">Prompts</a><a href="#turbo">Turbinar</a><a href="#refinar">Refinar</a><a href="#pro">Plano Pro</a><a href="#comparar">Comparação</a><a href="#faq">Dúvidas</a></div><button class="btn ghost" id="theme" type="button" aria-label="Alternar tema claro e escuro">Tema</button></div></nav>
 
 <header class="hero"><div class="wrap">
 <h1>Gemini Pro na prática</h1>
 <p class="lead">Tudo o que o plano Google AI Pro libera, como ativar cada recurso e mais de 60 prompts prontos para copiar, colar e adaptar.</p>
 <div class="cta"><a class="btn" href="#prontos">Ver prompts prontos</a><a class="btn ghost" href="#inicio">Configurar em 10 minutos</a></div>
+<div class="anat" role="group" aria-label="Exemplo de prompt dividido em quatro blocos"><p><span class="k1">Você é um nutricionista especializado.</span> <span class="k2">Monte um cardápio semanal simples</span> <span class="k3">para quem cozinha pouco e tem 30 minutos por refeição.</span> <span class="k4">Responda em lista, com as calorias aproximadas.</span></p><ul><li class="k1">Persona</li><li class="k2">Tarefa</li><li class="k3">Contexto</li><li class="k4">Formato</li></ul></div>
 <div class="facts"><span>Modelo avançado: Gemini 3.1 Pro</span><span>Limites 4x maiores que o grátis</span><span>5 TB de armazenamento</span><span>R$ 96,99/mês</span></div>
 </div></header>
 
@@ -423,6 +433,7 @@ try{JSON.parse(localStorage.getItem("gpm")||"[]").forEach(function(m){P.push(["M
 $("addp").onclick=function(){var t=$("mt").value.trim(),x=$("mx").value.trim();if(!t||!x){toast("Preencha título e prompt");return}P.push(["Meus prompts",t,x,1]);saveMine();$("mt").value="";$("mx").value="";cat="Meus prompts";$("q").value="";tabs();render();toast("Prompt salvo neste navegador")};
 $("rnd").onclick=function(){var p=P[Math.floor(Math.random()*P.length)];cat="Todos";$("q").value=p[1];tabs();render();$("list").scrollIntoView({block:"center"})};
 $("cfav").onclick=function(){var a=P.filter(function(p){return fav[p[1]]}).map(function(p){return p[1]+"\n"+p[2]});if(!a.length){toast("Nenhum favorito ainda");return}copy(a.join("\n\n---\n\n"))};
+addEventListener("scroll",function(){$("totop").classList.toggle("on",scrollY>700)},{passive:true});
 check();tabs();render();feats();$("fq").addEventListener("input",feats);
 </script>
 </body>
