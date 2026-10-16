@@ -110,11 +110,17 @@ textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:
 .anat ul{display:flex;gap:8px;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-size:.9rem;font-weight:600}
 #totop{opacity:0;pointer-events:none;transition:opacity .2s}
 #totop.on{opacity:1;pointer-events:auto}
+.chip[aria-pressed=true]{background:var(--brand);color:var(--bi);border-color:var(--brand)}
+#drout ul,#roteiro ul{margin:.6em 0 0;padding-left:1.2em}
+#drout li{margin:.35em 0}
+@media(prefers-reduced-motion:no-preference){
+@keyframes hl{from{background-color:transparent}}
+.anat span.k1{animation:hl .7s .3s both}.anat span.k2{animation:hl .7s .9s both}.anat span.k3{animation:hl .7s 1.5s both}.anat span.k4{animation:hl .7s 2.1s both}}
 </style>
 </head>
 <body>
 <noscript><p style="padding:20px;text-align:center">Esta página usa JavaScript para a biblioteca de prompts e a lista de recursos. Ative o JavaScript para ver todo o conteúdo.</p></noscript>
-<nav aria-label="Seções"><div class="wrap"><div class="links"><a href="#inicio">Começar</a><a href="#recursos">Recursos</a><a href="#prompt">Montar prompt</a><a href="#prontos">Prompts</a><a href="#turbo">Turbinar</a><a href="#refinar">Refinar</a><a href="#pro">Plano Pro</a><a href="#comparar">Comparação</a><a href="#faq">Dúvidas</a></div><button class="btn ghost" id="theme" type="button" aria-label="Alternar tema claro e escuro">Tema</button></div></nav>
+<nav aria-label="Seções"><div class="wrap"><div class="links"><a href="#perfil">Por onde começar</a><a href="#inicio">Checklist</a><a href="#recursos">Recursos</a><a href="#prompt">Montar prompt</a><a href="#doctor">Diagnóstico</a><a href="#prontos">Prompts</a><a href="#turbo">Turbinar</a><a href="#refinar">Refinar</a><a href="#pro">Plano Pro</a><a href="#comparar">Comparação</a><a href="#faq">Dúvidas</a></div><button class="btn ghost" id="theme" type="button" aria-label="Alternar tema claro e escuro">Tema</button></div></nav>
 
 <header class="hero"><div class="wrap">
 <h1>Gemini Pro na prática</h1>
@@ -123,6 +129,14 @@ textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:
 <div class="anat" role="group" aria-label="Exemplo de prompt dividido em quatro blocos"><p><span class="k1">Você é um nutricionista especializado.</span> <span class="k2">Monte um cardápio semanal simples</span> <span class="k3">para quem cozinha pouco e tem 30 minutos por refeição.</span> <span class="k4">Responda em lista, com as calorias aproximadas.</span></p><ul><li class="k1">Persona</li><li class="k2">Tarefa</li><li class="k3">Contexto</li><li class="k4">Formato</li></ul></div>
 <div class="facts"><span>Modelo avançado: Gemini 3.1 Pro</span><span>Limites 4x maiores que o grátis</span><span>5 TB de armazenamento</span><span>R$ 96,99/mês</span></div>
 </div></header>
+
+<section id="perfil"><div class="wrap">
+<h2>Por onde começar?</h2>
+<p class="intro">Responda duas perguntas e receba um roteiro com os recursos e os prompts certos para o seu dia a dia.</p>
+<h3 style="margin-top:20px">1. O que você mais faz?</h3><div class="chips" id="q1"></div>
+<h3 style="margin-top:20px">2. Você usa Gmail, Drive e Agenda?</h3><div class="chips" id="q2"></div>
+<div id="roteiro" aria-live="polite"></div>
+</div></section>
 
 <section id="inicio"><div class="wrap">
 <h2>Configure em 10 minutos</h2>
@@ -199,6 +213,15 @@ textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:
 <div><label for="b4">Formato <small>como receber</small></label><input type="text" id="b4" placeholder="Em lista, com calorias aproximadas de cada refeição"></div>
 <div class="out"><strong>Seu prompt</strong><pre id="built" style="margin-top:8px">Preencha os campos acima.</pre><button class="btn" type="button" id="copyBuilt">Copiar prompt</button></div>
 </div>
+</div></section>
+
+<section id="doctor"><div class="wrap">
+<h2>Diagnóstico do seu prompt</h2>
+<p class="intro">Cole um prompt e veja quais dos 4 blocos estão faltando. A análise usa regras simples e roda no seu navegador, sem enviar nada a ninguém. Ela aponta ausências, mas não avalia a qualidade do conteúdo.</p>
+<label for="dr" style="margin-top:18px">Seu prompt</label>
+<textarea id="dr" rows="5" placeholder="Cole aqui o prompt que você usa hoje"></textarea>
+<div class="row" style="margin-top:10px"><button class="btn" type="button" id="drgo">Analisar</button></div>
+<div id="drout" aria-live="polite"></div>
 </div></section>
 
 <section id="prontos"><div class="wrap">
@@ -434,6 +457,22 @@ $("addp").onclick=function(){var t=$("mt").value.trim(),x=$("mx").value.trim();i
 $("rnd").onclick=function(){var p=P[Math.floor(Math.random()*P.length)];cat="Todos";$("q").value=p[1];tabs();render();$("list").scrollIntoView({block:"center"})};
 $("cfav").onclick=function(){var a=P.filter(function(p){return fav[p[1]]}).map(function(p){return p[1]+"\n"+p[2]});if(!a.length){toast("Nenhum favorito ainda");return}copy(a.join("\n\n---\n\n"))};
 addEventListener("scroll",function(){$("totop").classList.toggle("on",scrollY>700)},{passive:true});
+var PERF={"Trabalho de escritório":{f:["Apps conectados e @","Gemini no Workspace","Upload de arquivos"],c:["Trabalho","Apps Google"]},"Estudos":{f:["Deep Research","Canvas","Upload de arquivos"],c:["Estudo","Pesquisa"]},"Conteúdo e redes sociais":{f:["Imagens (Nano Banana)","Canvas","Gems"],c:["Redes sociais","Imagem"]},"Jurídico e atendimento":{f:["Upload de arquivos","Gems","Seletor de modelos"],c:["Jurídico","RH e atendimento"]},"Pesquisa e análise":{f:["Deep Research","Upload de arquivos","Seletor de modelos"],c:["Pesquisa","Documentos"]}};
+var pq={a:"",b:""},Q2=["Sim, quase todo dia","Pouco ou nada"];
+function pick(id,opts,key){var b=$(id);b.textContent="";opts.forEach(function(o){var x=document.createElement("button");x.type="button";x.className="chip";x.textContent=o;x.setAttribute("aria-pressed",pq[key]===o?"true":"false");x.onclick=function(){pq[key]=o;pick(id,opts,key);roteiro()};b.appendChild(x)})}
+function roteiro(){var r=$("roteiro");r.textContent="";if(!pq.a||!pq.b)return;var pf=PERF[pq.a],apps=pq.b===Q2[0];var fs=pf.f.filter(function(n){return apps||(n.indexOf("Apps")<0&&n.indexOf("Workspace")<0)}).concat(["Upload de arquivos","Canvas","Gems"]).filter(function(n,i,a){return a.indexOf(n)===i});if(apps&&fs.indexOf("Apps conectados e @")<0)fs.unshift("Apps conectados e @");fs=fs.slice(0,3);
+var c=document.createElement("div");c.className="card";c.style.marginTop="20px";var h=document.createElement("h3");h.textContent="Seu roteiro";c.appendChild(h);
+var p1=document.createElement("p");p1.textContent="Comece por estes recursos:";c.appendChild(p1);var b1=document.createElement("div");b1.className="chips";fs.forEach(function(n){var x=document.createElement("button");x.type="button";x.className="chip";x.textContent=n;x.onclick=function(){$("fq").value=n;fplan="Todos";feats();var d=document.querySelector("#flist details");if(d)d.open=true;$("recursos").scrollIntoView()};b1.appendChild(x)});c.appendChild(b1);
+var p2=document.createElement("p");p2.textContent="Depois, teste estes prompts:";c.appendChild(p2);var b2=document.createElement("div");b2.className="chips";pf.c.forEach(function(n){var x=document.createElement("button");x.type="button";x.className="chip";x.textContent=n;x.onclick=function(){cat=n;$("q").value="";tabs();render();$("prontos").scrollIntoView()};b2.appendChild(x)});c.appendChild(b2);
+if(!apps){var p3=document.createElement("p");p3.textContent="Sem os apps do Google conectados, você ainda usa arquivos anexados e pesquisa. Quando quiser, conecte Gmail, Drive e Agenda em Apps Conectados.";c.appendChild(p3)}r.appendChild(c)}
+function doctor(){var t=$("dr").value.trim(),o=$("drout");o.textContent="";if(!t){toast("Cole um prompt para analisar");return}
+var ch=[["Persona",/você é|voce é|atue como|aja como|se comporte como|como um |como uma /i,"Diga quem a IA deve ser. Ex.: Você é um revisor de textos."],["Tarefa",/\b(crie|escreva|monte|explique|resuma|revise|liste|compare|analise|gere|organize|transforme|redija|planeje|sugira|elabore|traduza|corrija|faça|identifique|extraia)\b/i,"Comece com um verbo claro. Ex.: Resuma, Compare, Redija."],["Contexto",/\b(para|público|contexto|considerando|com base|sobre|porque|objetivo)\b/i,"Explique a situação e para quem é. Ex.: Para clientes que nunca usaram o serviço."],["Formato",/(lista|tabela|tópicos|bullet|parágrafo|passo a passo|até \d+|\d+ (palavras|linhas|itens|frases|opções|perguntas)|formato)/i,"Diga como quer a resposta. Ex.: Em tabela, com até 5 itens."]];
+var n=0,ul=document.createElement("ul");ch.forEach(function(k){var ok=k[1].test(t)&&(k[0]!=="Contexto"||t.length>50);if(ok)n++;var li=document.createElement("li");li.textContent=ok?"✓ "+k[0]+": encontrado.":"✗ "+k[0]+": "+k[2];ul.appendChild(li)});
+var c=document.createElement("div");c.className="card";c.style.marginTop="14px";var h=document.createElement("h3");h.textContent=n+" de 4 blocos presentes";c.appendChild(h);c.appendChild(ul);
+var ex=[];if(t.length<25)ex.push("O prompt está muito curto; acrescente detalhes.");if(/\[[^\]]+\]/.test(t))ex.push("Ainda há campos entre [colchetes] sem preencher.");ex.forEach(function(m){var p=document.createElement("p");p.textContent="Atenção: "+m;c.appendChild(p)});
+var bt=document.createElement("button");bt.type="button";bt.className="btn";bt.style.marginTop="10px";bt.textContent="Copiar pedido para o Gemini melhorar";bt.onclick=function(){copy("Melhore o prompt abaixo. Reescreva-o usando persona, tarefa, contexto e formato. Se faltar informação, faça até 3 perguntas antes de reescrever.\n\nPrompt:\n"+t)};c.appendChild(bt);o.appendChild(c)}
+$("drgo").onclick=doctor;
+pick("q1",Object.keys(PERF),"a");pick("q2",Q2,"b");
 check();tabs();render();feats();$("fq").addEventListener("input",feats);
 </script>
 </body>
