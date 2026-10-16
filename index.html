@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gemini Pro na prática: guia completo com prompts prontos</title>
 <meta name="description" content="Guia em português para tirar o máximo do Gemini Pro (Google AI Pro): prompts prontos, Deep Research, Deep Think, documentos longos, Gmail, Drive, imagens e Gems.">
+<meta property="og:title" content="Gemini Pro na prática: guia completo com prompts prontos">
+<meta property="og:description" content="Mais de 60 prompts, todos os recursos do Gemini e passo a passo para usar o plano Pro.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#3d5afe">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,6 +97,8 @@ footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);fon
 .feat ol{margin:.6em 0 .8em;padding-left:1.3em;color:var(--mut)}
 .feat .src{font-size:.85rem;color:var(--mut)}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
+textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical}
+#totop{position:fixed;right:16px;bottom:16px;padding:8px 14px;z-index:5}
 </style>
 </head>
 <body>
@@ -103,7 +109,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);fon
 
 <header class="hero"><div class="wrap">
 <h1>Gemini Pro na prática</h1>
-<p class="lead">Tudo o que o plano Google AI Pro libera, como ativar cada recurso e mais de 45 prompts prontos para copiar, colar e adaptar.</p>
+<p class="lead">Tudo o que o plano Google AI Pro libera, como ativar cada recurso e mais de 60 prompts prontos para copiar, colar e adaptar.</p>
 <div class="cta"><a class="btn" href="#prontos">Ver prompts prontos</a><a class="btn ghost" href="#inicio">Configurar em 10 minutos</a></div>
 <div class="facts"><span>Modelo avançado: Gemini 3.1 Pro</span><span>Limites 4x maiores que o grátis</span><span>5 TB de armazenamento</span><span>R$ 96,99/mês</span></div>
 </div></header>
@@ -188,6 +194,8 @@ footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);fon
 <section id="prontos"><div class="wrap">
 <h2>Biblioteca de prompts</h2>
 <p class="intro">Troque o que está entre [colchetes]. Os prompts com <code>@</code> usam seus apps conectados.</p>
+<div class="row" style="margin-top:18px"><button class="btn" type="button" id="rnd">Sortear um prompt</button><button class="btn ghost" type="button" id="cfav">Copiar meus favoritos</button></div>
+<details style="margin-top:14px"><summary>Adicionar meu próprio prompt</summary><p>Fica salvo só neste navegador.</p><label for="mt">Título</label><input type="text" id="mt"><label for="mx" style="margin-top:10px">Prompt</label><textarea id="mx" rows="4"></textarea><button class="btn" type="button" id="addp" style="margin-top:10px">Salvar prompt</button></details>
 <label for="q" style="margin-top:18px">Buscar</label>
 <input type="search" id="q" placeholder="Ex.: contrato, ata, e-mail, viagem">
 <div class="tabs" id="tabs" role="group" aria-label="Categorias"></div>
@@ -297,6 +305,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);fon
 </div></section>
 
 <footer><div class="wrap">Guia independente, sem vínculo com o Google. Revisado em 16/10/2026. Baseado em artigos do Canaltech (set/2026) e da Central de Prompts IA (fev/2026). Preços, modelos e limites mudam com frequência; confirme no site oficial.</div></footer>
+<a id="totop" class="btn" href="#" aria-label="Voltar ao topo">↑</a>
 <div id="toast" role="status"></div>
 
 <script>
@@ -346,6 +355,26 @@ var P=[
 ["Redes sociais","Legenda de Instagram","Escreva 3 opções de legenda para um post sobre [tema], tom [leve, institucional ou inspirador], com chamada para ação e até 5 hashtags."],
 ["Redes sociais","Calendário semanal","Monte um calendário de conteúdo de 7 dias para [perfil ou projeto], com formato, tema e horário sugerido de cada post."],
 ["Redes sociais","Roteiro de vídeo curto","Crie um roteiro de vídeo de 30 segundos sobre [tema], com gancho nos 3 primeiros segundos, desenvolvimento e chamada final."],
+["Marketing e vendas","Proposta comercial","Escreva uma proposta comercial para [cliente] oferecendo [serviço], com problema, solução, entregas, prazo e investimento de [valor]. Tom profissional, até 1 página."],
+["Marketing e vendas","Respostas a objeções","Liste as 5 objeções mais comuns de clientes para [produto ou serviço] e escreva uma resposta curta e honesta para cada uma."],
+["Marketing e vendas","Descrição de produto","Escreva a descrição de [produto] para loja virtual, com título, 3 benefícios, especificações e chamada para ação, sem exageros."],
+["Marketing e vendas","Pesquisa de concorrentes","Use o Deep Research para comparar [empresa] com [concorrente] em preços, diferenciais, pontos fracos e oportunidades. Cite as fontes."],
+["Marketing e vendas","Pitch de 1 minuto","Crie um pitch de 1 minuto para [produto] para [público], com problema, solução e convite final."],
+["RH e atendimento","Anúncio de vaga","Redija um anúncio para a vaga de [cargo] em [empresa], com responsabilidades, requisitos obrigatórios e desejáveis, benefícios e linguagem inclusiva."],
+["RH e atendimento","Perguntas de entrevista","Crie 10 perguntas de entrevista para [cargo], com o que observar em cada resposta."],
+["RH e atendimento","Resposta a reclamação","Escreva uma resposta empática e objetiva a esta reclamação de cliente, assumindo o que for cabível e propondo solução:\n[cole a reclamação]"],
+["RH e atendimento","FAQ de atendimento","Crie um FAQ com 10 perguntas e respostas curtas sobre [produto ou serviço], para o site."],
+["Programação","Explicar código","Explique este código linha por linha para um iniciante e aponte possíveis problemas:\n[cole o código]"],
+["Programação","Corrigir erro","Este erro aparece quando executo meu código. Explique a causa provável e mostre a correção:\n[cole o erro e o código]"],
+["Programação","Criar no Canvas","Abra no Canvas e crie [descrição do app ou página], com visual limpo e que funcione bem no celular."],
+["Programação","Escrever testes","Escreva testes para esta função cobrindo casos normais, limites e erros:\n[cole a função]"],
+["Finanças pessoais","Organizar orçamento","Monte um orçamento mensal com esta renda e estes gastos, separando essenciais, desejos e reserva, e aponte onde posso reduzir:\n[cole os valores]"],
+["Finanças pessoais","Comparar opções","Compare as opções [A] e [B] em custo total, prazo e riscos, em tabela, e liste o que devo confirmar com um profissional."],
+["Finanças pessoais","Estrutura de planilha","Crie a estrutura de uma planilha para controlar [tema], com colunas, fórmulas sugeridas e um gráfico."],
+["Escrita","Post de LinkedIn","Escreva um post de LinkedIn sobre [tema] em primeira pessoa, com gancho na primeira linha, história curta e pergunta final. Até 150 palavras."],
+["Escrita","Currículo","Reescreva as experiências abaixo com verbos de ação e resultados mensuráveis, sem inventar dados:\n[cole as experiências]"],
+["Escrita","Carta de apresentação","Escreva uma carta de apresentação para a vaga de [cargo] em [empresa], usando estas experiências: [cole]. Máximo 200 palavras."],
+["Escrita","Discurso curto","Escreva um discurso de 2 minutos para [ocasião], tom [emocionado, leve ou formal], com abertura, história e agradecimento."],
 ["Gems","Gem revisor de textos","Você é um revisor de textos. Corrija gramática e clareza em português do Brasil, sem mudar o sentido. Devolva o texto corrigido e uma lista curta do que mudou."],
 ["Gems","Gem revisor de propostas","Revise propostas comerciais em português, identifique erros de preço, inconsistências e cláusulas vagas. Tom profissional e direto."],
 ["Gems","Gem de triagem","Você é um assistente de triagem. Compare os candidatos com os critérios da vaga e liste os 3 melhores com justificativa objetiva.\nCritérios: [critérios]"]
@@ -379,7 +408,7 @@ var d=document.createElement("details");d.className="feat";var sm=document.creat
 var p=document.createElement("p");p.textContent=f[2];d.appendChild(p);var h=document.createElement("strong");h.textContent="Como usar";d.appendChild(h);var ol=document.createElement("ol");f[3].forEach(function(x){var li=document.createElement("li");li.textContent=x;ol.appendChild(li)});d.appendChild(ol);
 var pr=document.createElement("pre");pr.textContent=f[4];d.appendChild(pr);var bt=document.createElement("button");bt.type="button";bt.className="btn";bt.style.padding="6px 12px";bt.textContent="Copiar prompt de teste";bt.setAttribute("data-t",f[4]);d.appendChild(bt);var sr=document.createElement("p");sr.className="src";sr.textContent="Fonte: "+f[5];d.appendChild(sr);l.appendChild(d)});
 $("fcount").textContent=c+(c===1?" recurso":" recursos");if(!c){var e=document.createElement("p");e.className="empty";e.textContent="Nenhum recurso encontrado. Limpe a busca ou escolha outro plano.";l.appendChild(e)}}
-function render(){var q=$("q").value.toLowerCase(),l=$("list"),n=0;l.textContent="";P.forEach(function(p){var ok=cat==="Todos"||(cat==="Favoritos"?fav[p[1]]:p[0]===cat);if(!ok||(p[1]+" "+p[2]).toLowerCase().indexOf(q)<0)return;n++;var d=document.createElement("div");d.className="prompt";var top=document.createElement("div");top.className="row";top.style.justifyContent="space-between";var h=document.createElement("h3");h.textContent=p[1];h.style.margin="0";var st=document.createElement("button");st.type="button";st.className="star";var paint=function(){st.textContent=fav[p[1]]?"★":"☆";st.setAttribute("aria-pressed",fav[p[1]]?"true":"false");st.setAttribute("aria-label",fav[p[1]]?"Remover dos favoritos":"Adicionar aos favoritos")};paint();st.onclick=function(){if(fav[p[1]])delete fav[p[1]];else fav[p[1]]=1;try{localStorage.setItem("gpf",JSON.stringify(fav))}catch(e){}if(cat==="Favoritos")render();else paint()};top.appendChild(h);top.appendChild(st);d.appendChild(top);var ph=p[2].match(/\[[^\]]+\]/g)||[];ph=ph.filter(function(x,i){return ph.indexOf(x)===i});var vals={},pre=document.createElement("pre");var txt=function(){var t=p[2];ph.forEach(function(k){if(vals[k])t=t.split(k).join(vals[k])});return t};pre.textContent=p[2];if(ph.length){var f=document.createElement("div");f.className="fill";ph.forEach(function(k,j){var id="f"+n+"_"+j,lb=document.createElement("label"),inp=document.createElement("input");lb.htmlFor=id;lb.textContent=k.slice(1,-1);inp.type="text";inp.id=id;inp.oninput=function(){vals[k]=inp.value.trim();pre.textContent=txt()};var w=document.createElement("div");w.appendChild(lb);w.appendChild(inp);f.appendChild(w)});d.appendChild(f)}d.appendChild(pre);var r=document.createElement("div");r.className="row";var b=document.createElement("button");b.className="btn";b.type="button";b.textContent="Copiar";b.onclick=function(){var t=txt();copy(t);if(/\[[^\]]+\]/.test(t))setTimeout(function(){toast("Copiado, mas ainda há campos [..] sem preencher")},1700)};var s=document.createElement("span");s.className="tag";s.textContent=p[0];r.appendChild(b);r.appendChild(s);d.appendChild(r);l.appendChild(d)});$("count").textContent=n+(n===1?" prompt":" prompts");if(!n){var e=document.createElement("p");e.className="empty";e.textContent=cat==="Favoritos"?"Toque na estrela de um prompt para guardá-lo aqui.":"Nenhum prompt encontrado. Tente outra palavra ou escolha “Todos”.";l.appendChild(e)}}
+function render(){var q=$("q").value.toLowerCase(),l=$("list"),n=0;l.textContent="";P.forEach(function(p){var ok=cat==="Todos"||(cat==="Favoritos"?fav[p[1]]:p[0]===cat);if(!ok||(p[1]+" "+p[2]).toLowerCase().indexOf(q)<0)return;n++;var d=document.createElement("div");d.className="prompt";var top=document.createElement("div");top.className="row";top.style.justifyContent="space-between";var h=document.createElement("h3");h.textContent=p[1];h.style.margin="0";var st=document.createElement("button");st.type="button";st.className="star";var paint=function(){st.textContent=fav[p[1]]?"★":"☆";st.setAttribute("aria-pressed",fav[p[1]]?"true":"false");st.setAttribute("aria-label",fav[p[1]]?"Remover dos favoritos":"Adicionar aos favoritos")};paint();st.onclick=function(){if(fav[p[1]])delete fav[p[1]];else fav[p[1]]=1;try{localStorage.setItem("gpf",JSON.stringify(fav))}catch(e){}if(cat==="Favoritos")render();else paint()};top.appendChild(h);top.appendChild(st);d.appendChild(top);var ph=p[2].match(/\[[^\]]+\]/g)||[];ph=ph.filter(function(x,i){return ph.indexOf(x)===i});var vals={},pre=document.createElement("pre");var txt=function(){var t=p[2];ph.forEach(function(k){if(vals[k])t=t.split(k).join(vals[k])});return t};pre.textContent=p[2];if(ph.length){var f=document.createElement("div");f.className="fill";ph.forEach(function(k,j){var id="f"+n+"_"+j,lb=document.createElement("label"),inp=document.createElement("input");lb.htmlFor=id;lb.textContent=k.slice(1,-1);inp.type="text";inp.id=id;inp.oninput=function(){vals[k]=inp.value.trim();pre.textContent=txt()};var w=document.createElement("div");w.appendChild(lb);w.appendChild(inp);f.appendChild(w)});d.appendChild(f)}d.appendChild(pre);var r=document.createElement("div");r.className="row";var b=document.createElement("button");b.className="btn";b.type="button";b.textContent="Copiar";b.onclick=function(){var t=txt();copy(t);if(/\[[^\]]+\]/.test(t))setTimeout(function(){toast("Copiado, mas ainda há campos [..] sem preencher")},1700)};var s=document.createElement("span");s.className="tag";s.textContent=p[0];r.appendChild(b);r.appendChild(s);if(p[3]){var x=document.createElement("button");x.type="button";x.className="chip";x.textContent="Excluir";x.onclick=function(){var i=P.indexOf(p);if(i>-1)P.splice(i,1);saveMine();tabs();render()};r.appendChild(x)}d.appendChild(r);l.appendChild(d)});$("count").textContent=n+(n===1?" prompt":" prompts");if(!n){var e=document.createElement("p");e.className="empty";e.textContent=cat==="Favoritos"?"Toque na estrela de um prompt para guardá-lo aqui.":"Nenhum prompt encontrado. Tente outra palavra ou escolha “Todos”.";l.appendChild(e)}}
 function build(){var v=["b1","b2","b3","b4"].map(function(i){return $(i).value.trim()}).filter(Boolean).map(function(s){return /[.!?:]$/.test(s)?s:s+"."});$("built").textContent=v.length?v.join(" "):"Preencha os campos acima."}
 var saved={};try{saved=JSON.parse(localStorage.getItem("gp")||"{}")}catch(e){}
 function prog(){var n=document.querySelectorAll("#check input:checked").length;$("prog").textContent=n+" de "+STEPS.length+" etapas concluídas"+(n===STEPS.length?". Tudo pronto!":".")}
@@ -389,6 +418,11 @@ $("copyBuilt").onclick=function(){var t=$("built").textContent;if(t!=="Preencha 
 $("q").addEventListener("input",render);
 $("theme").onclick=function(){var r=document.documentElement,d=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");r.setAttribute("data-theme",d==="dark"?"light":"dark")};
 document.addEventListener("click",function(e){var t=e.target.closest("[data-t]");if(t)copy(t.getAttribute("data-t"))});
+function saveMine(){try{localStorage.setItem("gpm",JSON.stringify(P.filter(function(p){return p[3]}).map(function(p){return [p[1],p[2]]})))}catch(e){}}
+try{JSON.parse(localStorage.getItem("gpm")||"[]").forEach(function(m){P.push(["Meus prompts",m[0],m[1],1])})}catch(e){}
+$("addp").onclick=function(){var t=$("mt").value.trim(),x=$("mx").value.trim();if(!t||!x){toast("Preencha título e prompt");return}P.push(["Meus prompts",t,x,1]);saveMine();$("mt").value="";$("mx").value="";cat="Meus prompts";$("q").value="";tabs();render();toast("Prompt salvo neste navegador")};
+$("rnd").onclick=function(){var p=P[Math.floor(Math.random()*P.length)];cat="Todos";$("q").value=p[1];tabs();render();$("list").scrollIntoView({block:"center"})};
+$("cfav").onclick=function(){var a=P.filter(function(p){return fav[p[1]]}).map(function(p){return p[1]+"\n"+p[2]});if(!a.length){toast("Nenhum favorito ainda");return}copy(a.join("\n\n---\n\n"))};
 check();tabs();render();feats();$("fq").addEventListener("input",feats);
 </script>
 </body>
