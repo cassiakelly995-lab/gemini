@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gemini Pro na prática: guia completo com prompts prontos</title>
+<meta name="description" content="Guia em português para tirar o máximo do Gemini Pro (Google AI Pro): prompts prontos, Deep Research, Deep Think, documentos longos, Gmail, Drive, imagens e Gems.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f6fb;--card:#fff;--ink:#171b33;--mut:#555d78;--line:#dce0ee;--brand:#3d5afe;--bi:#fff;--ok:#0b8f7e;--warn:#c2410c;--soft:#e8ecff;color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1329;--card:#181d3a;--ink:#eceffd;--mut:#a5adcf;--line:#2b3262;--brand:#8ea0ff;--bi:#0f1329;--ok:#4fd1bd;--warn:#fb923c;--soft:#222a56;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#0f1329;--card:#181d3a;--ink:#eceffd;--mut:#a5adcf;--line:#2b3262;--brand:#8ea0ff;--bi:#0f1329;--ok:#4fd1bd;--warn:#fb923c;--soft:#222a56;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Figtree,sans-serif;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.6rem,3.6vw,2.2rem);font-weight:800}
+h3{font-size:1.1rem;font-weight:600}
+a{color:var(--brand)}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;align-items:center;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:6px 12px;border-radius:99px;font-size:.92rem;font-weight:500}
+nav a:hover{background:var(--soft)}
+nav button{margin-left:auto;white-space:nowrap}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--brand);color:var(--bi);border:0;border-radius:10px;padding:9px 16px;font-weight:600;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:hover{filter:brightness(1.08)}
+.hero{padding:72px 0 44px}
+.hero .lead{font-size:1.2rem;max-width:640px;color:var(--mut)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.facts span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:.92rem}
+section{padding:48px 0;border-top:1px solid var(--line)}
+.intro{color:var(--mut);max-width:660px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card p{margin:.3em 0 0;color:var(--mut);font-size:.96rem}
+.tag{display:inline-block;background:var(--soft);color:var(--brand);border-radius:6px;padding:1px 8px;font-size:.82rem;font-weight:600}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:var(--soft);padding:1px 6px;border-radius:5px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:20px 0 0}
+.steps li{counter-increment:s;position:relative;padding:4px 0 14px 46px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:2px;width:30px;height:30px;border-radius:50%;background:var(--brand);color:var(--bi);display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.check{list-style:none;padding:0;margin:18px 0 0}
+.check li{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;cursor:pointer;font-weight:400;margin:0}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--brand);flex:none}
+.check input:checked+span{text-decoration:line-through;color:var(--mut)}
+#prog{color:var(--mut);font-size:.95rem;margin-top:6px}
+.builder{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin-top:20px}
+@media(max-width:700px){.builder{grid-template-columns:1fr}}
+label{display:block;font-weight:600;font-size:.95rem;margin-bottom:4px}
+label small{font-weight:400;color:var(--mut)}
+input[type=text],input[type=search]{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.out{grid-column:1/-1;background:var(--card);border:2px solid var(--brand);border-radius:14px;padding:18px}
+pre{white-space:pre-wrap;word-break:break-word;margin:0 0 12px;font:inherit}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 14px}
+.tabs button{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-weight:500}
+.tabs button[aria-pressed=true]{background:var(--brand);color:var(--bi);border-color:var(--brand)}
+.prompt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px}
+.prompt h3{font-size:1rem;margin-bottom:.4em}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.prompt .btn{padding:6px 12px;font-size:.9rem}
+.empty,#count{color:var(--mut)}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);font-size:.95rem}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--soft)}
+tr:last-child td{border-bottom:0}
+.scroll{overflow-x:auto;margin-top:18px;border-radius:12px}
+.note{border-left:4px solid var(--warn);background:var(--card);padding:12px 16px;border-radius:0 10px 10px 0;margin-top:18px;font-size:.96rem}
+.note.ok{border-color:var(--ok)}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-top:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:.6em 0 0;color:var(--mut)}
+footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);font-size:.9rem}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .2s}
+#toast.on{opacity:1}
+</style>
+</head>
+<body>
+<nav aria-label="Seções"><div class="wrap">
+<a href="#inicio">Primeiros passos</a><a href="#pro">O que o Pro libera</a><a href="#prompt">Montar prompt</a><a href="#prontos">Prompts prontos</a><a href="#receitas">Combos</a><a href="#apps">Apps Google</a><a href="#imagens">Imagens</a><a href="#comparar">Comparação</a><a href="#faq">Dúvidas</a>
+<button class="btn ghost" id="theme" type="button" aria-label="Alternar tema claro e escuro">Tema</button>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+<h1>Gemini Pro na prática</h1>
+<p class="lead">Tudo o que o plano Google AI Pro libera, como ativar cada recurso e mais de 40 prompts prontos para copiar, colar e adaptar.</p>
+<div class="cta"><a class="btn" href="#prontos">Ver prompts prontos</a><a class="btn ghost" href="#inicio">Configurar em 10 minutos</a></div>
+<div class="facts"><span>Modelo avançado: Gemini 3.1 Pro</span><span>Limites 4x maiores que o grátis</span><span>5 TB de armazenamento</span><span>R$ 96,99/mês</span></div>
+</div></header>
+
+<section id="inicio"><div class="wrap">
+<h2>Configure em 10 minutos</h2>
+<p class="intro">Marque cada etapa conforme fizer. Seu progresso fica salvo neste navegador.</p>
+<ul class="check" id="check"></ul>
+<p id="prog" aria-live="polite"></p>
+</div></section>
+
+<section id="pro"><div class="wrap">
+<h2>O que o Pro libera</h2>
+<p class="intro">Recursos do plano Google AI Pro, segundo o Canaltech (ago/2026) e a Central de Prompts IA (fev/2026). Os recursos mudam; confirme na página do plano.</p>
+<div class="grid">
+<div class="card"><h3>Gemini 3.1 Pro</h3><p>O modelo mais avançado para raciocínio, indicado para tarefas complexas, documentos longos e projetos que exigem precisão. Escolha no seletor de modelos, na caixa de texto.</p></div>
+<div class="card"><h3>Limites 4x maiores</h3><p>Quatro vezes os limites padrão do plano grátis, inclusive para gerar imagens.</p></div>
+<div class="card"><h3>Documentos longos</h3><p>Janela de contexto de 1 milhão de tokens e uploads grandes de PDF, planilha, áudio e vídeo na mesma conversa (limite de 1.500 páginas por upload, segundo a Central de Prompts IA).</p></div>
+<div class="card"><h3>Deep Research</h3><p>Pesquisa aprofundada na web e relatório organizado. No Pro, na qualidade máxima.</p></div>
+<div class="card"><h3>Deep Think</h3><p>Raciocínio em várias etapas para problemas complexos. Use em contratos, análises e decisões importantes.</p></div>
+<div class="card"><h3>Gemini no Workspace</h3><p>Painel lateral do Gemini em Docs, Sheets e Gmail, para pedir ajustes sem sair do documento.</p></div>
+<div class="card"><h3>Apps conectados</h3><p>Gmail, Drive, Agenda e outros, com <code>@</code> no prompt.</p></div>
+<div class="card"><h3>Extras do plano</h3><p>5 TB de espaço, gravação no Google Meet e YouTube Premium Lite.</p></div>
+</div>
+<div class="note">Os dois artigos divergem em armazenamento (5 TB e 2 TB) e em preço (R$ e US$). Aqui usei o Canaltech, mais recente.</div>
+</div></section>
+
+<section id="prompt"><div class="wrap">
+<h2>Monte seu prompt em 4 blocos</h2>
+<p class="intro">Persona, tarefa, contexto e formato. Preencha e copie o texto pronto.</p>
+<div class="builder">
+<div><label for="b1">Persona <small>quem a IA deve ser</small></label><input type="text" id="b1" placeholder="Você é um nutricionista especializado"></div>
+<div><label for="b2">Tarefa <small>o que fazer</small></label><input type="text" id="b2" placeholder="Monte um cardápio semanal simples"></div>
+<div><label for="b3">Contexto <small>situação ou público</small></label><input type="text" id="b3" placeholder="Para quem cozinha pouco e tem 30 minutos por refeição"></div>
+<div><label for="b4">Formato <small>como receber</small></label><input type="text" id="b4" placeholder="Em lista, com calorias aproximadas de cada refeição"></div>
+<div class="out"><strong>Seu prompt</strong><pre id="built" style="margin-top:8px">Preencha os campos acima.</pre><button class="btn" type="button" id="copyBuilt">Copiar prompt</button></div>
+</div>
+</div></section>
+
+<section id="prontos"><div class="wrap">
+<h2>Biblioteca de prompts</h2>
+<p class="intro">Troque o que está entre [colchetes]. Os prompts com <code>@</code> usam seus apps conectados.</p>
+<label for="q" style="margin-top:18px">Buscar</label>
+<input type="search" id="q" placeholder="Ex.: contrato, ata, e-mail, viagem">
+<div class="tabs" id="tabs" role="group" aria-label="Categorias"></div>
+<p id="count" aria-live="polite"></p>
+<div id="list"></div>
+<div class="note">Antes de colar documentos com dados pessoais, de clientes ou sigilosos, confira as regras da sua conta e da sua organização. Revise sempre a resposta antes de usar: a IA pode errar fatos, números e citações.</div>
+</div></section>
+
+<section id="receitas"><div class="wrap">
+<h2>Combos que só o Pro faz bem</h2>
+<div class="grid">
+<div class="card"><h3>Pesquisa até o relatório final</h3><p>1) Deep Research com o prompt de mercado. 2) Abra no Canvas e edite seções. 3) No Docs, use o painel lateral para ajustar o tom.</p></div>
+<div class="card"><h3>Contrato em 3 passos</h3><p>1) Suba os contratos. 2) Use Deep Think para listar riscos. 3) Peça uma tabela comparando as cláusulas dos dois.</p></div>
+<div class="card"><h3>Segunda-feira organizada</h3><p>Rode o prompt “Planejar a semana” e depois peça para criar os eventos com <code>@Agenda</code>.</p></div>
+<div class="card"><h3>Gem para tarefa repetida</h3><p>Transforme o prompt que você mais usa em Gem: engrenagem e menu de Gems, criar, nome e instruções.</p></div>
+</div>
+</div></section>
+
+<section id="apps"><div class="wrap">
+<h2>Conectar Gmail, Drive e Agenda</h2>
+<ol class="steps">
+<li>Na versão web, clique na engrenagem.</li>
+<li>Vá em <strong>Inteligência Personalizada</strong> e depois <strong>Apps Conectados</strong>.</li>
+<li>Ative os apps. Para desativar, volte ao mesmo menu.</li>
+<li>Nos pedidos, digite <code>@</code> e escolha o app.</li>
+</ol>
+<div class="grid">
+<div class="card"><code>@Gmail</code><p>resuma meus últimos e-mails</p></div>
+<div class="card"><code>@Drive</code><p>procure arquivos sobre [tema]</p></div>
+<div class="card"><code>@Agenda</code><p>adicione o evento "[nome]" no dia [data] às [hora]</p></div>
+<div class="card"><code>@Keep</code><p>crie uma nota com a lista de tarefas da semana</p></div>
+<div class="card"><code>@YouTube Music</code><p>monte uma playlist de [gênero]</p></div>
+</div>
+<div class="note ok">O Gemini só acessa esses dados quando você pede, e pede confirmação antes de ações sensíveis, como excluir e-mails. Em contas de trabalho ou escola, a conexão depende do administrador do Workspace.</div>
+</div></section>
+
+<section id="imagens"><div class="wrap">
+<h2>Imagens com Nano Banana</h2>
+<p class="intro">Descreva cena, estilo, luz e formato. Depois peça ajustes pontuais em vez de recomeçar. O Pro tem limites maiores de geração.</p>
+<div class="grid">
+<div class="card"><span class="tag">Criar</span><p>“Gere uma imagem fotorrealista de uma xícara de café sobre uma mesa de madeira, com luz natural entrando pela janela.”</p></div>
+<div class="card"><span class="tag">Editar foto</span><p>Anexe a foto: “troque o fundo por um cenário de estúdio, mantendo a iluminação sobre a pessoa.”</p></div>
+<div class="card"><span class="tag">Ajustar</span><p>“Deixe o fundo mais claro e mude a cor da roupa para azul.”</p></div>
+</div>
+<div class="note">Se o Gemini recusar, reformule sem nomes de pessoas reais ou marcas e descreva só a aparência.</div>
+</div></section>
+
+<section id="comparar"><div class="wrap">
+<h2>Onde o Gemini Pro vence e onde testar outra IA</h2>
+<div class="scroll"><table>
+<thead><tr><th>Tarefa</th><th>Melhor caminho</th></tr></thead>
+<tbody>
+<tr><td>E-mails, arquivos e agenda do Google</td><td>Gemini Pro com apps conectados</td></tr>
+<tr><td>Relatório de pesquisa com fontes</td><td>Gemini Pro com Deep Research</td></tr>
+<tr><td>Editar dentro de Docs, Sheets e Gmail</td><td>Gemini Pro com o painel lateral</td></tr>
+<tr><td>Escrita criativa e programação</td><td>Compare com o ChatGPT; a Central de Prompts IA o vê como mais forte</td></tr>
+<tr><td>Textos muito longos</td><td>Compare com o Claude; o mesmo guia o vê como melhor</td></tr>
+</tbody></table></div>
+<p class="intro" style="margin-top:14px">Dica: rode o mesmo prompt em duas ferramentas e fique com a melhor resposta.</p>
+</div></section>
+
+<section id="faq"><div class="wrap">
+<h2>Quando algo dá errado</h2>
+<details><summary>A resposta veio genérica</summary><p>Use os 4 blocos e escolha “3.1 Pro” ou Deep Think no seletor de modelos, em vez de deixar no automático.</p></details>
+<details><summary>Dados desatualizados</summary><p>Peça: “Pesquise na web dados atualizados de 2026 sobre [tema]”.</p></details>
+<details><summary>App conectado não responde</summary><p>Confira em Apps Conectados se está ativo; desative e ative de novo. Em conta de trabalho, fale com o administrador.</p></details>
+<details><summary>Imagem recusada</summary><p>Tire nomes de pessoas e marcas e descreva só o visual.</p></details>
+<details><summary>O Pro é ilimitado?</summary><p>Não. Os limites são 4x os do plano grátis. O AI Ultra amplia ainda mais.</p></details>
+<details><summary>O Gemini substitui o Google Assistente?</summary><p>Sim, a partir de setembro de 2026.</p></details>
+</div></section>
+
+<footer><div class="wrap">Guia independente, sem vínculo com o Google. Baseado em artigos do Canaltech (set/2026) e da Central de Prompts IA (fev/2026). Preços, modelos e limites mudam com frequência; confirme no site oficial.</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+var $=function(i){return document.getElementById(i)},cat="Todos";
+var P=[
+["Documentos","Riscos de um contrato","Analise o contrato anexo e liste as cláusulas de risco, explicando cada uma em linguagem simples e sugerindo ajustes.\nFormato: tabela (cláusula | risco | sugestão)."],
+["Documentos","Comparar dois documentos","Compare os dois documentos anexos e liste diferenças relevantes, pontos em comum e o que está presente em um e ausente no outro."],
+["Documentos","Resumo executivo","Faça um resumo executivo do documento anexo em até 10 linhas, com os 5 pontos mais importantes e os próximos passos."],
+["Documentos","Perguntas sobre um PDF","Com base apenas no documento anexo, responda: [pergunta]. Cite a página ou o trecho de onde tirou a informação e diga se algo não consta."],
+["Documentos","Planilha em linguagem natural","Analise a planilha anexa: calcule [métrica] por [categoria], aponte valores fora do padrão e sugira um gráfico adequado."],
+["Pesquisa","Deep Research de mercado","Use o Deep Research para investigar: [tema].\n\nQuero um relatório com:\n1. Panorama, com dados numéricos\n2. 5 tendências emergentes com exemplos\n3. 3 oportunidades pouco exploradas\n4. Riscos e ameaças para os próximos 12 meses\n5. Fontes citadas com links\n\nDepois, abra no Canvas para eu editar seções."],
+["Pesquisa","Pesquisa com dados atuais","Pesquise na web dados atualizados de 2026 sobre [tema] e liste as fontes. Diga o que é fato confirmado e o que é estimativa."],
+["Pesquisa","Deep Think para decisão","Use raciocínio aprofundado: preciso decidir entre [opção A] e [opção B]. Liste critérios, avalie cada opção, aponte riscos e diga qual escolheria e por quê."],
+["Pesquisa","Explicação em dois níveis","Explique [tema] de forma simples e depois aprofunde em três pontos técnicos."],
+["Trabalho","Ata de reunião","Transforme estas anotações de reunião em uma ata com decisões e próximos passos:\n[cole as anotações]"],
+["Trabalho","Resumo de e-mail","Resuma este e-mail longo em três frases, mantendo o tom profissional:\n[cole o e-mail]"],
+["Trabalho","Revisão de texto","Revise este texto corrigindo gramática e clareza, sem mudar o sentido original:\n[cole o texto]"],
+["Trabalho","Responder e-mail difícil","Escreva uma resposta cordial e firme a este e-mail, recusando [pedido] e oferecendo [alternativa]:\n[cole o e-mail]"],
+["Trabalho","Oficio ou comunicado formal","Redija um comunicado formal para [destinatário] sobre [assunto], com tom institucional, objetivo e no máximo 200 palavras."],
+["Apps Google","Preparar reunião","Preciso me preparar para uma reunião com [nome ou empresa] amanhã.\n\n1. @Gmail busque os últimos 5 e-mails trocados com [nome] e resuma os pontos principais.\n2. @Drive procure documentos compartilhados com [nome] e liste os mais recentes.\n3. @Agenda verifique horário e duração da reunião.\n\nCrie: briefing de 1 página, 3 perguntas estratégicas e 1 possível objeção com sugestão de resposta."],
+["Apps Google","Planejar a semana","Me ajude a planejar minha semana:\n1. @Agenda liste meus compromissos de segunda a sexta.\n2. @Gmail identifique e-mails urgentes que precisam de resposta.\n3. @Drive liste documentos editados semana passada que precisam de follow-up.\n\nCrie uma tabela (dia | compromissos | tarefas | e-mails urgentes), blocos de foco nos horários livres e os 3 itens mais urgentes para segunda de manhã."],
+["Apps Google","Achar um e-mail antigo","@Gmail encontre o último e-mail de [pessoa] sobre [assunto] e resuma em 3 tópicos."],
+["Apps Google","Achar um arquivo","@Drive encontre a planilha ou o documento sobre [tema] e me diga o que ele contém."],
+["Apps Google","Horários livres","@Agenda quais são meus compromissos de amanhã e quanto tempo livre tenho entre eles?"],
+["Apps Google","Combinar apps","@Agenda verifique se tenho algo na quinta à noite e @Gmail veja se [pessoa] confirmou o jantar."],
+["Estudo","Cronograma de estudos","Monte um cronograma de estudos de duas semanas para [assunto], com uma hora por dia."],
+["Estudo","Perguntas de revisão","Crie dez perguntas de revisão sobre [tema], com gabarito comentado ao final."],
+["Estudo","Resumo de aula","Transforme este material em resumo com tópicos, glossário de termos e 5 perguntas para fixação:\n[cole o conteúdo]"],
+["Estudo","Mapa mental em texto","Organize [tema] em um mapa mental em tópicos hierárquicos, com no máximo 3 níveis."],
+["Produtividade","Priorizar tarefas","Organize esta lista de tarefas por prioridade, considerando prazo e esforço:\n[cole a lista]"],
+["Produtividade","Checklist de mudança","Crie um checklist de mudança de casa dividido por semana até [data]."],
+["Produtividade","Treino de 20 minutos","Sugira um roteiro de 20 minutos de exercícios para fazer em casa, sem equipamento."],
+["Produtividade","Planejar um evento","Monte um plano para organizar [evento] para [número] pessoas em [data]: cronograma, lista de tarefas, responsáveis e orçamento estimado."],
+["Viagem","Roteiro de 3 dias","Monte um roteiro de 3 dias em [cidade], com uma atração pela manhã e outra à tarde."],
+["Viagem","Comparar destinos","Compare os prós e contras de ir para [destino A] ou [destino B] em [época do ano]."],
+["Viagem","Lista de mala","Liste o que levar na mala para uma viagem de [dias] dias com clima [tipo de clima]."],
+["Imagem","Post para Instagram","Crie uma imagem para post de Instagram.\nCena: [cenário]\nEstilo: [fotorrealista, flat illustration, minimalista ou aquarela]\nPaleta: [cores]\nTexto na imagem: [se precisar]\nFormato: quadrado\nClima: [profissional, acolhedor, energético ou sofisticado]\nGere 3 variações."],
+["Imagem","Foto realista","Gere uma imagem fotorrealista de [objeto ou cena], com luz natural entrando pela janela."],
+["Imagem","Trocar fundo","Troque o fundo desta foto por um cenário de estúdio, mantendo a iluminação sobre a pessoa."],
+["Imagem","Variações de um produto","Use esta foto do meu produto como referência e crie 5 variações com fundos diferentes, mantendo o produto original."],
+["Gems","Gem revisor de textos","Você é um revisor de textos. Corrija gramática e clareza em português do Brasil, sem mudar o sentido. Devolva o texto corrigido e uma lista curta do que mudou."],
+["Gems","Gem revisor de propostas","Revise propostas comerciais em português, identifique erros de preço, inconsistências e cláusulas vagas. Tom profissional e direto."],
+["Gems","Gem de triagem","Você é um assistente de triagem. Compare os candidatos com os critérios da vaga e liste os 3 melhores com justificativa objetiva.\nCritérios: [critérios]"]
+];
+var STEPS=["Entre em gemini.google.com com sua conta Google e confirme que o plano Google AI Pro está ativo.","Abra o seletor de modelos e teste o Gemini 3.1 Pro em uma pergunta complexa.","Engrenagem, Inteligência Personalizada, Apps Conectados: ative Gmail, Drive e Agenda.","Rode o prompt “Planejar a semana” da biblioteca abaixo.","Faça uma pesquisa com Deep Research usando o prompt de mercado.","Suba um PDF longo e peça um resumo executivo.","Crie seu primeiro Gem com o prompt que você mais repete."];
+function toast(t){var e=$("toast");e.textContent=t;e.className="on";setTimeout(function(){e.className=""},1600)}
+function copy(t){var f=function(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");toast("Copiado!")}catch(e){toast("Selecione e copie manualmente")}a.remove()};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast("Copiado!")},f)}else f()}
+function tabs(){var c=["Todos"];P.forEach(function(p){if(c.indexOf(p[0])<0)c.push(p[0])});var t=$("tabs");t.textContent="";c.forEach(function(n){var b=document.createElement("button");b.type="button";b.textContent=n;b.setAttribute("aria-pressed",n===cat);b.onclick=function(){cat=n;tabs();render()};t.appendChild(b)})}
+function render(){var q=$("q").value.toLowerCase(),l=$("list"),n=0;l.textContent="";P.forEach(function(p){if((cat==="Todos"||p[0]===cat)&&(p[1]+" "+p[2]).toLowerCase().indexOf(q)>-1){n++;var d=document.createElement("div");d.className="prompt";var h=document.createElement("h3");h.textContent=p[1];var pre=document.createElement("pre");pre.textContent=p[2];var r=document.createElement("div");r.className="row";var b=document.createElement("button");b.className="btn";b.type="button";b.textContent="Copiar";b.onclick=function(){copy(p[2])};var s=document.createElement("span");s.className="tag";s.textContent=p[0];r.appendChild(b);r.appendChild(s);d.appendChild(h);d.appendChild(pre);d.appendChild(r);l.appendChild(d)}});$("count").textContent=n+(n===1?" prompt":" prompts");if(!n){var e=document.createElement("p");e.className="empty";e.textContent="Nenhum prompt encontrado. Tente outra palavra ou escolha “Todos”.";l.appendChild(e)}}
+function build(){var v=["b1","b2","b3","b4"].map(function(i){return $(i).value.trim()}).filter(Boolean).map(function(s){return /[.!?:]$/.test(s)?s:s+"."});$("built").textContent=v.length?v.join(" "):"Preencha os campos acima."}
+var saved={};try{saved=JSON.parse(localStorage.getItem("gp")||"{}")}catch(e){}
+function prog(){var n=document.querySelectorAll("#check input:checked").length;$("prog").textContent=n+" de "+STEPS.length+" etapas concluídas"+(n===STEPS.length?". Tudo pronto!":".")}
+function check(){var u=$("check");STEPS.forEach(function(s,i){var li=document.createElement("li"),lb=document.createElement("label"),c=document.createElement("input"),sp=document.createElement("span");c.type="checkbox";c.checked=!!saved[i];c.onchange=function(){saved[i]=c.checked;try{localStorage.setItem("gp",JSON.stringify(saved))}catch(e){}prog()};sp.textContent=s;lb.appendChild(c);lb.appendChild(sp);li.appendChild(lb);u.appendChild(li)});prog()}
+["b1","b2","b3","b4"].forEach(function(i){$(i).addEventListener("input",build)});
+$("copyBuilt").onclick=function(){var t=$("built").textContent;if(t!=="Preencha os campos acima.")copy(t);else toast("Preencha ao menos um campo")};
+$("q").addEventListener("input",render);
+$("theme").onclick=function(){var r=document.documentElement,d=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");r.setAttribute("data-theme",d==="dark"?"light":"dark")};
+check();tabs();render();
+</script>
+</body>
+</html>
