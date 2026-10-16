@@ -89,11 +89,15 @@ footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);fon
 .chip{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:6px 14px}
 .chip:hover{border-color:var(--brand)}
 .bad{color:var(--warn)}.good{color:var(--ok)}
+.feat summary{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.feat ol{margin:.6em 0 .8em;padding-left:1.3em;color:var(--mut)}
+.feat .src{font-size:.85rem;color:var(--mut)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 8px}
 </style>
 </head>
 <body>
 <nav aria-label="Seções"><div class="wrap">
-<a href="#inicio">Primeiros passos</a><a href="#pro">O que o Pro libera</a><a href="#prompt">Montar prompt</a><a href="#prontos">Prompts prontos</a><a href="#refinar">Refinar</a><a href="#receitas">Combos</a><a href="#apps">Apps Google</a><a href="#imagens">Imagens</a><a href="#comparar">Comparação</a><a href="#faq">Dúvidas</a>
+<a href="#inicio">Primeiros passos</a><a href="#pro">O que o Pro libera</a><a href="#recursos">Todos os recursos</a><a href="#turbo">Turbinar</a><a href="#prompt">Montar prompt</a><a href="#prontos">Prompts prontos</a><a href="#refinar">Refinar</a><a href="#receitas">Combos</a><a href="#apps">Apps Google</a><a href="#imagens">Imagens</a><a href="#comparar">Comparação</a><a href="#faq">Dúvidas</a>
 <button class="btn ghost" id="theme" type="button" aria-label="Alternar tema claro e escuro">Tema</button>
 </div></nav>
 
@@ -127,7 +131,49 @@ footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--mut);fon
 <div class="note">Os dois artigos divergem em armazenamento (5 TB e 2 TB) e em preço (R$ e US$). Aqui usei o Canaltech, mais recente.</div>
 </div></section>
 
-<section id="prompt"><div class="wrap">
+<section id="recursos"><div class="wrap">
+<h2>Todos os recursos e como usar</h2>
+<p class="intro">Cada recurso do Gemini descrito nos dois guias-base, com o passo a passo e um prompt para testar. Os menus do app mudam de nome com frequência; se não achar um item, procure no botão “+” ou na engrenagem.</p>
+<label for="fq" style="margin-top:18px">Buscar recurso</label>
+<input type="search" id="fq" placeholder="Ex.: voz, vídeo, Canvas, Workspace">
+<div class="pills" id="fp" role="group" aria-label="Filtrar por plano"></div>
+<p id="fcount" class="intro" aria-live="polite"></p>
+<div id="flist"></div>
+</div></section>
+
+<section id="turbo"><div class="wrap">
+<h2>Turbine seu Gemini</h2>
+<h3 style="margin-top:20px">Qual recurso usar para cada necessidade</h3>
+<div class="scroll"><table>
+<thead><tr><th>Preciso de…</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td>Resposta rápida a uma dúvida simples</td><td>Chat com modelo Flash-Lite ou Flash</td></tr>
+<tr><td>Analisar contrato, relatório ou documento longo</td><td>Upload de arquivo + Gemini 3.1 Pro ou Deep Think</td></tr>
+<tr><td>Relatório de pesquisa com fontes</td><td>Deep Research</td></tr>
+<tr><td>Editar partes de um texto longo</td><td>Canvas</td></tr>
+<tr><td>Fazer a mesma tarefa toda semana</td><td>Gem</td></tr>
+<tr><td>Achar um e-mail, arquivo ou compromisso</td><td>@Gmail, @Drive ou @Agenda</td></tr>
+<tr><td>Escrever ou revisar dentro de um documento</td><td>Gemini no Docs, Sheets ou Gmail</td></tr>
+<tr><td>Conversar por voz ou mostrar algo pela câmera</td><td>Gemini Live no app</td></tr>
+<tr><td>Criar ou editar uma imagem</td><td>Nano Banana</td></tr>
+<tr><td>Conversa sem histórico salvo</td><td>Conversa temporária</td></tr>
+</tbody></table></div>
+<h3 style="margin-top:28px">10 hábitos de quem usa o Gemini no máximo</h3>
+<ol class="steps">
+<li><strong>Escolha o modelo certo:</strong> rápido para o simples, 3.1 Pro ou Deep Think para o que exige precisão.</li>
+<li><strong>Conecte os apps</strong> e cite-os com <code>@</code> nos pedidos.</li>
+<li><strong>Use os 4 blocos:</strong> persona, tarefa, contexto e formato.</li>
+<li><strong>Refine em vez de recomeçar:</strong> peça “mais curto”, “em tabela”, “3 alternativas”.</li>
+<li><strong>Anexe o documento</strong> em vez de colar trechos soltos.</li>
+<li><strong>Em pesquisas,</strong> peça dados atualizados e as fontes.</li>
+<li><strong>Transforme prompts repetidos em Gems.</strong></li>
+<li><strong>Edite no Canvas</strong> as seções de textos longos.</li>
+<li><strong>Abra uma conversa nova por assunto,</strong> para o contexto não se misturar.</li>
+<li><strong>Confira o que é importante:</strong> peça “o que você não tem certeza?” e valide números e citações.</li>
+</ol>
+</div></section>
+
+<section id="refinar"><div class="wrap">
 <h2>Monte seu prompt em 4 blocos</h2>
 <p class="intro">Persona, tarefa, contexto e formato. Preencha e copie o texto pronto.</p>
 <div class="builder">
@@ -309,6 +355,30 @@ function toast(t){var e=$("toast");e.textContent=t;e.className="on";setTimeout(f
 function copy(t){var f=function(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");toast("Copiado!")}catch(e){toast("Selecione e copie manualmente")}a.remove()};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast("Copiado!")},f)}else f()}
 function tabs(){var c=["Todos","Favoritos"];P.forEach(function(p){if(c.indexOf(p[0])<0)c.push(p[0])});var t=$("tabs");t.textContent="";c.forEach(function(n){var b=document.createElement("button");b.type="button";b.textContent=n;b.setAttribute("aria-pressed",n===cat);b.onclick=function(){cat=n;tabs();render()};t.appendChild(b)})}
 var fav={};try{fav=JSON.parse(localStorage.getItem("gpf")||"{}")}catch(e){}
+var F=[
+["Chat por texto","Todos","Conversa em que você digita um pedido e recebe a resposta, como no ChatGPT ou no Claude.",["Abra gemini.google.com ou o app.","Digite o pedido na caixa de texto e envie.","Peça ajustes na mesma conversa.","Use o botão “+” para anexar arquivos ou abrir recursos."],"Você é um professor paciente. Explique [tema] em 5 passos, para quem nunca estudou o assunto, com um exemplo no final.","Canaltech"],
+["Seletor de modelos","Todos (limites variam)","Troca o modelo conforme a tarefa. Segundo o Canaltech: 3.5 Flash-Lite é o mais leve e veloz, 3.7 Flash é equilibrado e 3.1 Pro é o mais avançado em raciocínio.",["Abra o Gemini.","Na caixa de texto, abra o seletor de modelos.","Escolha o modelo desejado."],"Use o modelo mais avançado para analisar com precisão: [tarefa complexa]. Mostre o raciocínio em etapas e destaque as incertezas.","Canaltech"],
+["Upload de arquivos","Todos (limites variam)","Anexa PDFs, imagens, planilhas, documentos do Word, áudio e vídeo. No Pro, o upload pode chegar a 1.500 páginas, segundo a Central de Prompts IA.",["Toque no “+” e anexe o arquivo.","Escreva o que quer fazer com ele.","Faça várias perguntas na mesma conversa."],"Leia o arquivo anexo e faça: 1) resumo executivo em 10 linhas, 2) lista de riscos, 3) 5 perguntas que eu deveria fazer ao autor.","Central de Prompts IA"],
+["Deep Research","Grátis (básico) e Pro (completo)","Pesquisa profunda na web com relatório organizado. Leva alguns minutos e pode usar seus próprios arquivos como fonte, segundo a Central de Prompts IA.",["No “+”, escolha a pesquisa aprofundada ou escreva “Use o Deep Research para…”.","Descreva o tema e o que o relatório deve conter.","Aguarde a conclusão.","Abra no Canvas para editar."],"Use o Deep Research para investigar [tema]. Quero panorama com dados, 5 tendências, riscos e fontes citadas com links. Depois abra no Canvas.","Canaltech e Central de Prompts IA"],
+["Canvas","Todos","Espaço de criação que transforma pedidos em protótipos de app, páginas web, dashboards ou resumos em áudio, com ajustes em tempo real. Também serve para editar textos longos por partes.",["Peça “abra no Canvas” ou use a opção que aparece junto ao texto.","Edite trechos específicos ou peça para reescrever uma seção.","Peça transformações: quiz, página, dashboard ou resumo em áudio."],"Abra no Canvas e transforme este conteúdo em um quiz de 10 perguntas com gabarito:\n[cole o conteúdo]","Canaltech e Central de Prompts IA"],
+["Gems","Todos","Assistentes personalizados que atuam como especialistas fixos, como revisor de textos ou programador. Há Gems prontos e você pode criar os seus.",["Na barra lateral da versão web, abra o gerenciador de Gems.","Escolha criar um Gem.","Defina nome, instruções e comportamento.","Use o Gem em vez do chat genérico."],"Instruções do Gem: Você é um revisor de propostas comerciais. Identifique erros de preço, inconsistências e cláusulas vagas. Tom profissional e direto.","Canaltech e Central de Prompts IA"],
+["Imagens (Nano Banana)","Grátis (limitado) e Pro","Gera e edita imagens. A edição inline permite circular, desenhar ou digitar sobre a imagem gerada para alterar só um elemento (Central de Prompts IA).",["Peça a imagem descrevendo cena, estilo, luz e formato.","Para editar, anexe a foto e diga o que mudar.","Ajuste com pedidos pontuais, sem refazer tudo."],"Gere uma imagem fotorrealista de um escritório moderno. Depois eu vou pedir para trocar a mesa por uma de madeira rústica.","Canaltech e Central de Prompts IA"],
+["Vídeo (Veo)","Pro (Veo 3.1 Fast, limitado) e Ultra","Geração de vídeo. O Pro inclui o Veo 3.1 Fast, que serve para vídeos curtos de redes sociais; o Ultra tem o Veo completo (Central de Prompts IA).",["Procure a opção de vídeo no “+” (o caminho pode variar).","Descreva cena, movimento, estilo e clima.","Peça variações ou ajustes."],"Crie um vídeo curto de uma xícara de café sendo servida em uma mesa de madeira, com luz natural de janela e clima acolhedor.","Central de Prompts IA"],
+["Apps conectados e @","Todos (conta Workspace depende do administrador)","Liga o Gemini a Gmail, Drive, Agenda, Keep e YouTube Music. Você cita o app com @ no pedido.",["Na versão web, abra a engrenagem.","Vá em Inteligência Personalizada, depois Apps Conectados.","Ative os apps.","No prompt, digite @ e escolha o app."],"@Gmail resuma meus últimos e-mails e aponte os que precisam de resposta hoje.","Canaltech"],
+["Personal Intelligence","Pro e Ultra","Cruza dados de Gmail, Drive, Agenda e Maps para respostas personalizadas, como preparar uma reunião com o histórico real de e-mails e arquivos (Central de Prompts IA).",["Ative os apps conectados (o menu pode aparecer como Extensions ou Apps Conectados).","Autorize cada app quando pedido.","Faça perguntas que dependam dos seus dados."],"O que tenho de importante amanhã? Considere minha agenda, e-mails relacionados e sugira a melhor rota.","Central de Prompts IA"],
+["Gemini no Workspace","Básico para todos; painel lateral no Pro","No Docs ajuda a escrever e refinar textos; no Slides cria imagens e slides; no Sheets gera fórmulas a partir de linguagem natural; no Gmail resume conversas longas e redige respostas (Central de Prompts IA).",["Abra o documento, a planilha, a apresentação ou o e-mail.","Use o ícone do Gemini ou o painel lateral.","Peça ajustes sem sair do arquivo."],"Calcule a média de vendas por região e sugira um gráfico para apresentar.","Central de Prompts IA"],
+["Gemini Live e voz","Todos","Conversa por voz em português, com opção de mutar e câmera integrada no app (Central de Prompts IA e Canaltech).",["Abra o app Gemini no celular.","Toque no modo de voz ou Live.","Fale naturalmente e use a câmera para mostrar algo, se quiser."],"Vamos ensaiar minha apresentação sobre [tema]. Faça perguntas difíceis como um avaliador e depois dê notas de 0 a 10.","Canaltech e Central de Prompts IA"],
+["Agente de navegador","Pro e Ultra","O Auto Browse e o Project Mariner navegam na web por você: pesquisam, preenchem formulários e agendam, com aprovação sua (Central de Prompts IA). A disponibilidade pode variar.",["Use o Gemini no Chrome ou no recurso indicado na sua conta.","Descreva a tarefa e o limite do que pode fazer.","Aprove cada ação sensível."],"Encontre o trem mais barato de São Paulo para Campinas para sexta-feira e peça minha aprovação antes de reservar.","Central de Prompts IA"],
+["Conversa temporária","Todos","Permite conversar sem salvar histórico nem personalizar respostas futuras. O Google pode guardar uma cópia por até 72 horas por segurança (Canaltech).",["Inicie uma conversa temporária pelo menu do Gemini (o nome pode aparecer como modo anônimo).","Converse normalmente.","Não use para dados que exijam sigilo absoluto."],"Quero tirar uma dúvida pessoal sem deixar histórico: [dúvida].","Canaltech"],
+["Histórico e novas conversas","Todos","O menu lateral tem Nova conversa e Pesquisar conversas. Abra uma conversa por assunto e volte depois pela busca.",["Toque em Nova conversa para cada assunto.","Use Pesquisar conversas para reencontrar respostas.","Copie para um Gem o que se repete."],"Recomece do zero: ignore o contexto anterior e responda apenas com base nesta mensagem: [pedido].","Canaltech"]
+];
+var fplan="Todos";
+function feats(){var pl=["Todos"];F.forEach(function(f){var k=f[1].indexOf("Pro")>-1&&f[1].indexOf("Todos")<0?"Pro":f[1].indexOf("Todos")>-1?"Todos os planos":"Grátis e Pro";if(pl.indexOf(k)<0)pl.push(k)});var b=$("fp");b.textContent="";["Todos","Todos os planos","Grátis e Pro","Pro"].forEach(function(n){var x=document.createElement("button");x.type="button";x.className="chip";x.textContent=n;x.setAttribute("aria-pressed",n===fplan);if(n===fplan){x.style.background="var(--brand)";x.style.color="var(--bi)"}x.onclick=function(){fplan=n;feats()};b.appendChild(x)});
+var q=$("fq").value.toLowerCase(),l=$("flist"),c=0;l.textContent="";F.forEach(function(f){var k=f[1].indexOf("Todos")>-1?"Todos os planos":f[1].indexOf("Grátis")>-1?"Grátis e Pro":"Pro";if(fplan!=="Todos"&&k!==fplan)return;if((f[0]+" "+f[2]).toLowerCase().indexOf(q)<0)return;c++;
+var d=document.createElement("details");d.className="feat";var sm=document.createElement("summary");sm.textContent=f[0]+" ";var t=document.createElement("span");t.className="tag";t.textContent=f[1];sm.appendChild(t);d.appendChild(sm);
+var p=document.createElement("p");p.textContent=f[2];d.appendChild(p);var h=document.createElement("strong");h.textContent="Como usar";d.appendChild(h);var ol=document.createElement("ol");f[3].forEach(function(x){var li=document.createElement("li");li.textContent=x;ol.appendChild(li)});d.appendChild(ol);
+var pr=document.createElement("pre");pr.textContent=f[4];d.appendChild(pr);var bt=document.createElement("button");bt.type="button";bt.className="btn";bt.style.padding="6px 12px";bt.textContent="Copiar prompt de teste";bt.setAttribute("data-t",f[4]);d.appendChild(bt);var sr=document.createElement("p");sr.className="src";sr.textContent="Fonte: "+f[5];d.appendChild(sr);l.appendChild(d)});
+$("fcount").textContent=c+(c===1?" recurso":" recursos");if(!c){var e=document.createElement("p");e.className="empty";e.textContent="Nenhum recurso encontrado. Limpe a busca ou escolha outro plano.";l.appendChild(e)}}
 function render(){var q=$("q").value.toLowerCase(),l=$("list"),n=0;l.textContent="";P.forEach(function(p){var ok=cat==="Todos"||(cat==="Favoritos"?fav[p[1]]:p[0]===cat);if(!ok||(p[1]+" "+p[2]).toLowerCase().indexOf(q)<0)return;n++;var d=document.createElement("div");d.className="prompt";var top=document.createElement("div");top.className="row";top.style.justifyContent="space-between";var h=document.createElement("h3");h.textContent=p[1];h.style.margin="0";var st=document.createElement("button");st.type="button";st.className="star";var paint=function(){st.textContent=fav[p[1]]?"★":"☆";st.setAttribute("aria-pressed",fav[p[1]]?"true":"false");st.setAttribute("aria-label",fav[p[1]]?"Remover dos favoritos":"Adicionar aos favoritos")};paint();st.onclick=function(){if(fav[p[1]])delete fav[p[1]];else fav[p[1]]=1;try{localStorage.setItem("gpf",JSON.stringify(fav))}catch(e){}if(cat==="Favoritos")render();else paint()};top.appendChild(h);top.appendChild(st);d.appendChild(top);var ph=p[2].match(/\[[^\]]+\]/g)||[];ph=ph.filter(function(x,i){return ph.indexOf(x)===i});var vals={},pre=document.createElement("pre");var txt=function(){var t=p[2];ph.forEach(function(k){if(vals[k])t=t.split(k).join(vals[k])});return t};pre.textContent=p[2];if(ph.length){var f=document.createElement("div");f.className="fill";ph.forEach(function(k,j){var id="f"+n+"_"+j,lb=document.createElement("label"),inp=document.createElement("input");lb.htmlFor=id;lb.textContent=k.slice(1,-1);inp.type="text";inp.id=id;inp.oninput=function(){vals[k]=inp.value.trim();pre.textContent=txt()};var w=document.createElement("div");w.appendChild(lb);w.appendChild(inp);f.appendChild(w)});d.appendChild(f)}d.appendChild(pre);var r=document.createElement("div");r.className="row";var b=document.createElement("button");b.className="btn";b.type="button";b.textContent="Copiar";b.onclick=function(){var t=txt();copy(t);if(/\[[^\]]+\]/.test(t))setTimeout(function(){toast("Copiado, mas ainda há campos [..] sem preencher")},1700)};var s=document.createElement("span");s.className="tag";s.textContent=p[0];r.appendChild(b);r.appendChild(s);d.appendChild(r);l.appendChild(d)});$("count").textContent=n+(n===1?" prompt":" prompts");if(!n){var e=document.createElement("p");e.className="empty";e.textContent=cat==="Favoritos"?"Toque na estrela de um prompt para guardá-lo aqui.":"Nenhum prompt encontrado. Tente outra palavra ou escolha “Todos”.";l.appendChild(e)}}
 function build(){var v=["b1","b2","b3","b4"].map(function(i){return $(i).value.trim()}).filter(Boolean).map(function(s){return /[.!?:]$/.test(s)?s:s+"."});$("built").textContent=v.length?v.join(" "):"Preencha os campos acima."}
 var saved={};try{saved=JSON.parse(localStorage.getItem("gp")||"{}")}catch(e){}
@@ -319,7 +389,7 @@ $("copyBuilt").onclick=function(){var t=$("built").textContent;if(t!=="Preencha 
 $("q").addEventListener("input",render);
 $("theme").onclick=function(){var r=document.documentElement,d=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");r.setAttribute("data-theme",d==="dark"?"light":"dark")};
 document.addEventListener("click",function(e){var t=e.target.closest("[data-t]");if(t)copy(t.getAttribute("data-t"))});
-check();tabs();render();
+check();tabs();render();feats();$("fq").addEventListener("input",feats);
 </script>
 </body>
 </html>
